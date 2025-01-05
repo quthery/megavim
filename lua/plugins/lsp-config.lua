@@ -15,6 +15,7 @@ return {
 					"gopls",
 					"pyright",
 					"clangd",
+          "jsonls",
 					"eslint",
 					"ts_ls",
 					"html",
@@ -114,6 +115,12 @@ return {
 					},
 				},
 			})
+      lspconfig.ts_ls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities_lsp,
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        root_dir = lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git"),
+      })
 			lspconfig.gopls.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
